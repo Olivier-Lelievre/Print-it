@@ -20,9 +20,8 @@ const slides = [
 /* Création des compteurs et variable*/
 let nbreSlide = slides.length
 let divActive = 0
-let imageActive = 1
 let sourceImage = document.querySelector(".banner-img")
-/*let slide = slides[imageActive]*/
+let sourceTagline = document.querySelector("#banner p")
 
 /* Création des 4 points */
 let i = 0
@@ -42,19 +41,18 @@ listeDivs[0].classList.add("dot_selected")
 let btFlecheGauche = document.querySelector("#banner .arrow_left");
 btFlecheGauche.addEventListener("click", () => {
 	divActive-- 
-	imageActive--
 	listeDivs[divActive+1].classList.remove("dot_selected")
 	listeDivs[divActive].classList.add("dot_selected")
-	sourceImage.src = `./assets/images/slideshow/slide${imageActive}.jpg`
+	sourceImage.src = `./assets/images/slideshow/`+slides[divActive].image
+	sourceTagline.innerHTML = slides[divActive].tagLine
 });
 
 /* Ajout de la flèche droite */
 let btFlecheDroite = document.querySelector("#banner .arrow_right");
 btFlecheDroite.addEventListener("click", () => {
 	divActive++
-	imageActive++
 	listeDivs[divActive-1].classList.remove("dot_selected")
 	listeDivs[divActive].classList.add("dot_selected")
-	sourceImage.src =  `./assets/images/slideshow/slide${imageActive}.jpg`
+	sourceImage.src = `./assets/images/slideshow/`+slides[divActive].image
+	sourceTagline.innerHTML = slides[divActive].tagLine
 });
-
