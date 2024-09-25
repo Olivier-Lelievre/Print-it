@@ -40,19 +40,35 @@ listeDivs[0].classList.add("dot_selected")
 /* Ajout de la flèche gauche */
 let btFlecheGauche = document.querySelector("#banner .arrow_left");
 btFlecheGauche.addEventListener("click", () => {
-	divActive-- 
-	listeDivs[divActive+1].classList.remove("dot_selected")
-	listeDivs[divActive].classList.add("dot_selected")
-	sourceImage.src = `./assets/images/slideshow/`+slides[divActive].image
-	sourceTagline.innerHTML = slides[divActive].tagLine
+	if (divActive === 0) {
+		divActive = nbreSlide-1
+		listeDivs[0].classList.remove("dot_selected")
+		listeDivs[divActive].classList.add("dot_selected")
+		sourceImage.src = `./assets/images/slideshow/`+slides[divActive].image
+		sourceTagline.innerHTML = slides[divActive].tagLine
+	} else {
+		divActive-- 
+		listeDivs[divActive+1].classList.remove("dot_selected")
+		listeDivs[divActive].classList.add("dot_selected")
+		sourceImage.src = `./assets/images/slideshow/`+slides[divActive].image
+		sourceTagline.innerHTML = slides[divActive].tagLine
+	}
 });
 
 /* Ajout de la flèche droite */
 let btFlecheDroite = document.querySelector("#banner .arrow_right");
 btFlecheDroite.addEventListener("click", () => {
-	divActive++
-	listeDivs[divActive-1].classList.remove("dot_selected")
-	listeDivs[divActive].classList.add("dot_selected")
-	sourceImage.src = `./assets/images/slideshow/`+slides[divActive].image
-	sourceTagline.innerHTML = slides[divActive].tagLine
+	if (divActive === nbreSlide-1) {
+		divActive = 0
+		listeDivs[divActive+nbreSlide-1].classList.remove("dot_selected")
+		listeDivs[divActive].classList.add("dot_selected")
+		sourceImage.src = `./assets/images/slideshow/`+slides[divActive].image
+		sourceTagline.innerHTML = slides[divActive].tagLine
+	} else {
+		divActive++
+		listeDivs[divActive-1].classList.remove("dot_selected")
+		listeDivs[divActive].classList.add("dot_selected")
+		sourceImage.src = `./assets/images/slideshow/`+slides[divActive].image
+		sourceTagline.innerHTML = slides[divActive].tagLine
+	}
 });
