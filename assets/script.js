@@ -17,14 +17,44 @@ const slides = [
 	}
 ]
 
-/* Code ajouté */
+/* Création des compteurs et variable*/
+let nbreSlide = slides.length
+let divActive = 0
+let imageActive = 1
+let sourceImage = document.querySelector(".banner-img")
+/*let slide = slides[imageActive]*/
 
+/* Création des 4 points */
+let i = 0
+while (i < nbreSlide) {
+	let divDot = document.createElement("div")
+	let divDots = document.querySelector("div .dots")
+	divDots.appendChild(divDot)
+	divDot.classList.add("dot")
+    i++
+}
+
+/* Ajout de la class="dot_selected" */
+let listeDivs = document.querySelectorAll(".dots div")
+listeDivs[0].classList.add("dot_selected")
+
+/* Ajout de la flèche gauche */
 let btFlecheGauche = document.querySelector("#banner .arrow_left");
 btFlecheGauche.addEventListener("click", () => {
-	console.log("Vous avez cliqué sur la flèche gauche")
+	divActive-- 
+	imageActive--
+	listeDivs[divActive+1].classList.remove("dot_selected")
+	listeDivs[divActive].classList.add("dot_selected")
+	sourceImage.src = `./assets/images/slideshow/slide${imageActive}.jpg`
 });
 
+/* Ajout de la flèche droite */
 let btFlecheDroite = document.querySelector("#banner .arrow_right");
 btFlecheDroite.addEventListener("click", () => {
-    console.log("Vous avez cliqué sur la flèche droite")
+	divActive++
+	imageActive++
+	listeDivs[divActive-1].classList.remove("dot_selected")
+	listeDivs[divActive].classList.add("dot_selected")
+	sourceImage.src =  `./assets/images/slideshow/slide${imageActive}.jpg`
 });
+
